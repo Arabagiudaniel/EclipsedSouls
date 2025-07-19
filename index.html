@@ -85,19 +85,29 @@
       <a href="https://mega.nz/file/8i1gBIyL#tLf6e9zna3kX9ZupTIXg3GWd43CnLC4ia5UWef4FaPU" target="_blank">Asset-uri</a>
       <a href="https://www.youtube.com/watch?v=ZddyN5N0yiU" target="_blank">Trailer YouTube</a>
       <a href="Documentatie.html">Citește documentația</a>
-
     </div>
   </main>
 
   <footer>
     Proiect înscris la Olimpiada InfoEducație 2025<br />
     Eclipsed Souls – Toate drepturile rezervate © 2025
+    <p style="font-size: 14px; text-align: center;">
+      Versiune: <span id="versiune">loading...</span>
+    </p>
   </footer>
-   <footer>
-     <p style="font-size: 14px; text-align: center;">
-  Versiune: <span id="versiune">loading...</span>
-</p>
-</footer>
+
+  <script>
+    fetch('version.json')
+      .then(response => response.json())
+      .then(data => {
+        const versiune = `${data.version} (${data.date})`;
+        document.getElementById('versiune').innerText = versiune;
+      })
+      .catch(error => {
+        console.error("Eroare la încărcarea versiunii:", error);
+        document.getElementById('versiune').innerText = "versiune indisponibilă";
+      });
+  </script>
 
 </body>
 </html>
